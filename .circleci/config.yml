@@ -1,0 +1,30 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+  newman: postman/newman@0.0.2
+
+jobs:
+  build-and-test:
+    executor: python/default
+    steps:
+      - checkout
+      - python/load-cache
+      - python/install-deps
+      - python/save-cache
+      - run:
+          command: python -m pytest
+          # command: ./manage.py test
+          name: Test
+  newman-collection-run:
+    executor: newman/postman-newman-docker
+    steps:
+      - checkout
+      - newman/newman-run:
+          collection: ./apitest/Circleci-Postman-Sample.postman_collection.json
+
+workflows:
+  main:
+    jobs:
+      - build-and-test
+      - newman-collection-run

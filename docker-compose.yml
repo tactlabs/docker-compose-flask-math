@@ -1,0 +1,9 @@
+docker_compose_flask_math:
+  build: .
+  environment:
+    WORKER_SMTP_PORT: 265
+  command: python app.py
+  volumes:
+    - .:/home/app/api_sample
+  ports:
+    - "8071:8071"

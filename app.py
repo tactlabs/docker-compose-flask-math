@@ -1,4 +1,21 @@
-from flask import Flask, request, jsonify
+
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# the above line is to avoid 'SyntaxError: Non-UTF-8 code starting with' error
+
+'''
+Created on 
+
+Course work: 
+
+@author: raja
+
+Source:
+    
+'''
+
+# Import necessary modules
+from flask import Flask, request, jsonify, Response, abort, make_response
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine
 from json import dumps
@@ -17,7 +34,12 @@ api = Api(app)
 '''
 @app.route("/")
 def main():
-	return "Welcome"
+
+    result_dict = {
+        "result" : "welcome"
+    }
+
+    return make_response(jsonify(result_dict), 200)
 
 
 '''
@@ -32,7 +54,7 @@ def show_env():
         'env' : env
     }
 
-    return jsonify(result) 
+    return make_response(jsonify(result), 200)
 
 '''
     http://localhost:8071/reverse
@@ -52,7 +74,7 @@ def reverse_string_api():
         'content' : r_content
     }
 
-    return jsonify(result) 
+    return make_response(jsonify(result), 200)
 
 if __name__ == '__main__':
-    app.run( host='0.0.0.0', port=8071, debug=True)
+    app.run( host = '0.0.0.0', port = 8071, debug = True)

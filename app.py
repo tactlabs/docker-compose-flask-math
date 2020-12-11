@@ -48,7 +48,7 @@ def main():
 @app.route("/env")
 def show_env():
 
-    env = int(os.environ.get('WORKER_SMTP_PORT', '28'))
+    env = int(os.environ.get('WORKER_SMTP_PORT'))
 
     result = {
         'env' : env

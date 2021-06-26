@@ -1,5 +1,5 @@
 # Use the LTS release.
-FROM python:3.6-stretch
+FROM nethacker/ubuntu-18-04-python-3:python-3.7.3
 
 RUN useradd --user-group --create-home --shell /bin/false app 
   

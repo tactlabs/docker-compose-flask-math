@@ -36,7 +36,7 @@ api = Api(app)
 def main():
 
     result_dict = {
-        "result" : "welcome"
+        "result" : "donut"
     }
 
     return make_response(jsonify(result_dict), 200)

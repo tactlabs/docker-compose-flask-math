@@ -20,6 +20,8 @@ from flask_restful import Resource, Api
 from sqlalchemy import create_engine
 from json import dumps
 import os
+import random
+
 
 # Local import
 import string_util as su
@@ -75,6 +77,25 @@ def reverse_string_api():
     }
 
     return make_response(jsonify(result), 200)
+
+'''
+    http://localhost:8071/city
+
+'''
+
+
+@app.route("/city")
+def get_city():
+
+    random_word = random.choice(open("city.txt","r").readline().split())
+    
+    result = {
+        
+        'city' : random_word 
+    }
+    
+
+    return result
 
 if __name__ == '__main__':
     app.run( host = '0.0.0.0', port = 8071, debug = True)

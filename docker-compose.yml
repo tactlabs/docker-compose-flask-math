@@ -1,6 +1,7 @@
 version: '2'
 services:
   docker_compose_flask_math:
+    # platform: linux/amd64 # applicable for M1 Chip
     build: .
     environment:
       WORKER_SMTP_PORT: 265
